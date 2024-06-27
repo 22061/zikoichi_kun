@@ -121,10 +121,11 @@ SoftwareSerial IM920Serial(8, 9);  //RX, TX
 char input[50];
 int i = 0;  
 String data;
-float x1 = 0;
-float y1 = 0;
+float x = 0;
+float y = 0;
 
-void setup() {
+void setup() 
+{
   Serial.begin(19200);
   IM920Serial.begin(19200);
   zk_api::setup();
@@ -151,12 +152,12 @@ void loop()
 
     DeserializationError error = deserializeJson(doc, data);
 
-    x1=doc["x_axis"];
-    y1=doc["y_axis"];
-    // Serial.print(x1);
+    x=doc["x_axis"];
+    y=doc["y_axis"];
+    // Serial.print(x);
     // Serial.print(",");
-    // Serial.println(y1);
-    zk_api::xyz_control(x1, y1, 0.0, 50);
+    // Serial.println(y);
+    zk_api::xyz_control(x, y, 0.0, 50);
   }
 }
 #endif
